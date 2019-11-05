@@ -5,8 +5,7 @@ from config import congress
 
 house = congress.members.filter('house')
 
-header = ['Name', 'Party', 'State', 'District', 'Title']
-
+header = ['Name', 'Party', 'State', 'District', 'Title', 'Website', 'Facebook', 'Twitter']
 with open('csv/house.csv', mode='w') as house_file:
     house_writer = csv.DictWriter(house_file, fieldnames=header)
 
@@ -22,5 +21,5 @@ with open('csv/house.csv', mode='w') as house_file:
                       'Party': member['party'],
                       'State': member['state'],
                       'District': member['state'] + "_" + member['district'],
-                      'Title': member['title']}
+                      'Title': member['title'],'Website': member['url'], 'Facebook': member['facebook_account'], 'Twitter': member['twitter_account']}
         house_writer.writerow(memberDict)

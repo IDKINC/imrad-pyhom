@@ -5,8 +5,7 @@ from config import congress
 
 senate = congress.members.filter('senate')
 
-header = ['Name', 'Party', 'State', 'District', 'Title']
-
+header = ['Name', 'Party', 'State', 'District', 'Title', 'Website', 'Facebook', 'Twitter']
 with open('csv/senate.csv', mode='w') as senate_file:
     senate_writer = csv.DictWriter(senate_file, fieldnames=header)
 
@@ -16,5 +15,6 @@ with open('csv/senate.csv', mode='w') as senate_file:
         memberDict = {'Name': member['first_name'] + " " + member['last_name'],
                       'Party': member['party'],
                       'State': member['state'],
-                      'Title': member['title'].replace(', ',' - ')}
+                      'Title': member['title'].replace(', ',' - '),
+                      'Website': member['url'], 'Facebook': member['facebook_account'], 'Twitter': member['twitter_account']}
         senate_writer.writerow(memberDict)
